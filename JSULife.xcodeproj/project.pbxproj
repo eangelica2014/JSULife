@@ -8,11 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		72F2223425430EC900620C75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2223325430EC900620C75 /* AppDelegate.swift */; };
-		72F2223625430EC900620C75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2223525430EC900620C75 /* ViewController.swift */; };
 		72F2223925430EC900620C75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223725430EC900620C75 /* Main.storyboard */; };
 		72F2223B25430ECC00620C75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223A25430ECC00620C75 /* Assets.xcassets */; };
 		72F2223E25430ECC00620C75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223C25430ECC00620C75 /* LaunchScreen.storyboard */; };
 		72F2224925430ECC00620C75 /* JSULifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2224825430ECC00620C75 /* JSULifeTests.swift */; };
+		72F22256254329A200620C75 /* AmeliaChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F22255254329A200620C75 /* AmeliaChatViewController.swift */; };
+		72F22258254338D000620C75 /* AmeliaDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F22257254338D000620C75 /* AmeliaDialogue.swift */; };
+		72F2225A25433AC300620C75 /* ChatBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2225925433AC300620C75 /* ChatBubbleCell.swift */; };
+		72F2225D25435E9B00620C75 /* FuturaPT.otf in Resources */ = {isa = PBXBuildFile; fileRef = 72F2225C25435E9B00620C75 /* FuturaPT.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +31,6 @@
 /* Begin PBXFileReference section */
 		72F2223025430EC900620C75 /* JSULife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSULife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F2223325430EC900620C75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		72F2223525430EC900620C75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		72F2223825430EC900620C75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72F2223A25430ECC00620C75 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		72F2223D25430ECC00620C75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +38,10 @@
 		72F2224425430ECC00620C75 /* JSULifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSULifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F2224825430ECC00620C75 /* JSULifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSULifeTests.swift; sourceTree = "<group>"; };
 		72F2224A25430ECC00620C75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		72F22255254329A200620C75 /* AmeliaChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmeliaChatViewController.swift; sourceTree = "<group>"; };
+		72F22257254338D000620C75 /* AmeliaDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmeliaDialogue.swift; sourceTree = "<group>"; };
+		72F2225925433AC300620C75 /* ChatBubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleCell.swift; sourceTree = "<group>"; };
+		72F2225C25435E9B00620C75 /* FuturaPT.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FuturaPT.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +84,10 @@
 			isa = PBXGroup;
 			children = (
 				72F2223325430EC900620C75 /* AppDelegate.swift */,
-				72F2223525430EC900620C75 /* ViewController.swift */,
+				72F22255254329A200620C75 /* AmeliaChatViewController.swift */,
+				72F2225E2543680700620C75 /* Views */,
+				72F22257254338D000620C75 /* AmeliaDialogue.swift */,
+				72F2225B25435E8D00620C75 /* Fonts */,
 				72F2223725430EC900620C75 /* Main.storyboard */,
 				72F2223A25430ECC00620C75 /* Assets.xcassets */,
 				72F2223C25430ECC00620C75 /* LaunchScreen.storyboard */,
@@ -94,6 +103,22 @@
 				72F2224A25430ECC00620C75 /* Info.plist */,
 			);
 			path = JSULifeTests;
+			sourceTree = "<group>";
+		};
+		72F2225B25435E8D00620C75 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				72F2225C25435E9B00620C75 /* FuturaPT.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		72F2225E2543680700620C75 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72F2225925433AC300620C75 /* ChatBubbleCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +204,7 @@
 			files = (
 				72F2223E25430ECC00620C75 /* LaunchScreen.storyboard in Resources */,
 				72F2223B25430ECC00620C75 /* Assets.xcassets in Resources */,
+				72F2225D25435E9B00620C75 /* FuturaPT.otf in Resources */,
 				72F2223925430EC900620C75 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,7 +223,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72F2223625430EC900620C75 /* ViewController.swift in Sources */,
+				72F2225A25433AC300620C75 /* ChatBubbleCell.swift in Sources */,
+				72F22256254329A200620C75 /* AmeliaChatViewController.swift in Sources */,
+				72F22258254338D000620C75 /* AmeliaDialogue.swift in Sources */,
 				72F2223425430EC900620C75 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X5QPQ583EG;
 				INFOPLIST_FILE = JSULife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,6 +407,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X5QPQ583EG;
 				INFOPLIST_FILE = JSULife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
