@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7259ECF02544817E00BFF748 /* TypingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7259ECEF2544817E00BFF748 /* TypingAnimator.swift */; };
 		72F2223425430EC900620C75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2223325430EC900620C75 /* AppDelegate.swift */; };
 		72F2223925430EC900620C75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223725430EC900620C75 /* Main.storyboard */; };
 		72F2223B25430ECC00620C75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223A25430ECC00620C75 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7259ECEF2544817E00BFF748 /* TypingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingAnimator.swift; sourceTree = "<group>"; };
 		72F2223025430EC900620C75 /* JSULife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSULife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F2223325430EC900620C75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72F2223825430EC900620C75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				72F2223325430EC900620C75 /* AppDelegate.swift */,
 				72F22255254329A200620C75 /* AmeliaChatViewController.swift */,
+				7259ECEF2544817E00BFF748 /* TypingAnimator.swift */,
 				72F2225E2543680700620C75 /* Views */,
 				72F22257254338D000620C75 /* AmeliaDialogue.swift */,
 				72F2225B25435E8D00620C75 /* Fonts */,
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				72F2225A25433AC300620C75 /* ChatBubbleCell.swift in Sources */,
+				7259ECF02544817E00BFF748 /* TypingAnimator.swift in Sources */,
 				72F22256254329A200620C75 /* AmeliaChatViewController.swift in Sources */,
 				72F22258254338D000620C75 /* AmeliaDialogue.swift in Sources */,
 				72F2223425430EC900620C75 /* AppDelegate.swift in Sources */,
