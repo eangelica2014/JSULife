@@ -8,12 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7259ECF02544817E00BFF748 /* TypingAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7259ECEF2544817E00BFF748 /* TypingAnimator.swift */; };
+		7283D1F12545BD1600F53658 /* AmeliaChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1F02545BD1600F53658 /* AmeliaChatViewController.swift */; };
+		7283D1F32545C04500F53658 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1F22545C04500F53658 /* MessageCell.swift */; };
+		7283D1F52545C05200F53658 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1F42545C05200F53658 /* ImageCell.swift */; };
+		7283D1F72545C07500F53658 /* ResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1F62545C07500F53658 /* ResponseCell.swift */; };
+		7283D1F92545C26800F53658 /* CellConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1F82545C26800F53658 /* CellConstants.swift */; };
+		7283D1FB2545C3D100F53658 /* TypingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1FA2545C3D100F53658 /* TypingCell.swift */; };
+		7283D1FD2545D55800F53658 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1FC2545D55800F53658 /* FooterView.swift */; };
+		7283D1FF2546187300F53658 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D1FE2546187300F53658 /* Actions.swift */; };
+		7283D201254619CF00F53658 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7283D200254619CF00F53658 /* ActionSheet.swift */; };
 		72F2223425430EC900620C75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2223325430EC900620C75 /* AppDelegate.swift */; };
 		72F2223925430EC900620C75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223725430EC900620C75 /* Main.storyboard */; };
 		72F2223B25430ECC00620C75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223A25430ECC00620C75 /* Assets.xcassets */; };
 		72F2223E25430ECC00620C75 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72F2223C25430ECC00620C75 /* LaunchScreen.storyboard */; };
 		72F2224925430ECC00620C75 /* JSULifeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2224825430ECC00620C75 /* JSULifeTests.swift */; };
-		72F22256254329A200620C75 /* AmeliaChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F22255254329A200620C75 /* AmeliaChatViewController.swift */; };
 		72F22258254338D000620C75 /* AmeliaDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F22257254338D000620C75 /* AmeliaDialogue.swift */; };
 		72F2225A25433AC300620C75 /* ChatBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72F2225925433AC300620C75 /* ChatBubbleCell.swift */; };
 		72F2225D25435E9B00620C75 /* FuturaPT.otf in Resources */ = {isa = PBXBuildFile; fileRef = 72F2225C25435E9B00620C75 /* FuturaPT.otf */; };
@@ -31,6 +39,15 @@
 
 /* Begin PBXFileReference section */
 		7259ECEF2544817E00BFF748 /* TypingAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingAnimator.swift; sourceTree = "<group>"; };
+		7283D1F02545BD1600F53658 /* AmeliaChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmeliaChatViewController.swift; sourceTree = "<group>"; };
+		7283D1F22545C04500F53658 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		7283D1F42545C05200F53658 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		7283D1F62545C07500F53658 /* ResponseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCell.swift; sourceTree = "<group>"; };
+		7283D1F82545C26800F53658 /* CellConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConstants.swift; sourceTree = "<group>"; };
+		7283D1FA2545C3D100F53658 /* TypingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypingCell.swift; sourceTree = "<group>"; };
+		7283D1FC2545D55800F53658 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		7283D1FE2546187300F53658 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		7283D200254619CF00F53658 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		72F2223025430EC900620C75 /* JSULife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSULife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F2223325430EC900620C75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		72F2223825430EC900620C75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -40,7 +57,6 @@
 		72F2224425430ECC00620C75 /* JSULifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSULifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F2224825430ECC00620C75 /* JSULifeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSULifeTests.swift; sourceTree = "<group>"; };
 		72F2224A25430ECC00620C75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		72F22255254329A200620C75 /* AmeliaChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmeliaChatViewController.swift; sourceTree = "<group>"; };
 		72F22257254338D000620C75 /* AmeliaDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmeliaDialogue.swift; sourceTree = "<group>"; };
 		72F2225925433AC300620C75 /* ChatBubbleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleCell.swift; sourceTree = "<group>"; };
 		72F2225C25435E9B00620C75 /* FuturaPT.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FuturaPT.otf; sourceTree = "<group>"; };
@@ -86,9 +102,11 @@
 			isa = PBXGroup;
 			children = (
 				72F2223325430EC900620C75 /* AppDelegate.swift */,
-				72F22255254329A200620C75 /* AmeliaChatViewController.swift */,
+				7283D1F02545BD1600F53658 /* AmeliaChatViewController.swift */,
+				7283D1FE2546187300F53658 /* Actions.swift */,
+				7283D200254619CF00F53658 /* ActionSheet.swift */,
 				7259ECEF2544817E00BFF748 /* TypingAnimator.swift */,
-				72F2225E2543680700620C75 /* Views */,
+				72F2225E2543680700620C75 /* CellViews */,
 				72F22257254338D000620C75 /* AmeliaDialogue.swift */,
 				72F2225B25435E8D00620C75 /* Fonts */,
 				72F2223725430EC900620C75 /* Main.storyboard */,
@@ -116,12 +134,18 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		72F2225E2543680700620C75 /* Views */ = {
+		72F2225E2543680700620C75 /* CellViews */ = {
 			isa = PBXGroup;
 			children = (
+				7283D1FA2545C3D100F53658 /* TypingCell.swift */,
+				7283D1F22545C04500F53658 /* MessageCell.swift */,
+				7283D1F42545C05200F53658 /* ImageCell.swift */,
+				7283D1F62545C07500F53658 /* ResponseCell.swift */,
+				7283D1F82545C26800F53658 /* CellConstants.swift */,
+				7283D1FC2545D55800F53658 /* FooterView.swift */,
 				72F2225925433AC300620C75 /* ChatBubbleCell.swift */,
 			);
-			path = Views;
+			path = CellViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,11 +250,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7283D201254619CF00F53658 /* ActionSheet.swift in Sources */,
 				72F2225A25433AC300620C75 /* ChatBubbleCell.swift in Sources */,
 				7259ECF02544817E00BFF748 /* TypingAnimator.swift in Sources */,
-				72F22256254329A200620C75 /* AmeliaChatViewController.swift in Sources */,
 				72F22258254338D000620C75 /* AmeliaDialogue.swift in Sources */,
 				72F2223425430EC900620C75 /* AppDelegate.swift in Sources */,
+				7283D1F92545C26800F53658 /* CellConstants.swift in Sources */,
+				7283D1FB2545C3D100F53658 /* TypingCell.swift in Sources */,
+				7283D1F52545C05200F53658 /* ImageCell.swift in Sources */,
+				7283D1F12545BD1600F53658 /* AmeliaChatViewController.swift in Sources */,
+				7283D1FD2545D55800F53658 /* FooterView.swift in Sources */,
+				7283D1FF2546187300F53658 /* Actions.swift in Sources */,
+				7283D1F32545C04500F53658 /* MessageCell.swift in Sources */,
+				7283D1F72545C07500F53658 /* ResponseCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

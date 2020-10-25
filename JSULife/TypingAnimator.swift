@@ -12,11 +12,13 @@ import UIKit
 class TypingAnimator {
     
     var animDelegateVC: AmeliaChatViewController!
-    var cell: ChatBubbleCell!
-    
+//    var cell: ChatBubbleCell!
 //    var c1: CAShapeLayer!
 //    var c2: CAShapeLayer!
 //    var c3: CAShapeLayer!
+    
+    var cell: TypingCell!
+    
     let dur = 0.25 as Double
     
     func beginSequence() {
@@ -63,11 +65,7 @@ class TypingAnimator {
         A7.fillMode = CAMediaTimingFillMode.forwards
         A7.duration = 0.0
         A7.isRemovedOnCompletion = false
-        
-        print("cellAdressX,", Unmanaged.passUnretained(cell).toOpaque())
-
-        print("cell.c1,", cell.c1)
-        
+    
         cell.c1!.add(A7, forKey: "A7")
         
         let B1 = CABasicAnimation(keyPath: "opacity")
