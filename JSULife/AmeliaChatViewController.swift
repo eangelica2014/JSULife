@@ -2,8 +2,8 @@
 //  AmeliaChatViewController.swift
 //  JSULife
 //
-//  Created by Asaad on 10/23/20.
-//  Copyright © 2020 Animata Inc. All rights reserved.
+//  Created by JSU on 09/23/20.
+//  Copyright © 2020 JSU.Life. All rights reserved.
 //
 
 import Foundation
@@ -30,6 +30,7 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
     
     var dialogueCounter = 0
     var typingAnimator: TypingAnimator!
+    var Action_Sheet: ActionSheet!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,10 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         dialogue = [String]()
+        
+        Action_Sheet = ActionSheet()
+        Action_Sheet.initViews()
+        view.addSubview(Action_Sheet.sheetOneContainer)
     }
     
     func addYesButton() {
@@ -86,15 +91,11 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         self.view.addSubview(noButton)
         noButton.addTarget(self, action: #selector(noButton(_:)), for: .touchUpInside)
     }
-    
 
-    
     func queueAmelia() {
         dialogue.append(" ")
         tableView.reloadData()
     }
-    
-
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -109,12 +110,8 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
     
     var ameliaSet = [0, 4, 8, 10, 12, 15, 18]
     var animated = [Int]()
-    
     var typingCell: TypingCell!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        print("dialogue,", dialogue)
-        
         //Case 1: Amelia Typing
         if dialogue[indexPath.row] == " " {
             let cell: TypingCell! = tableView.dequeueReusableCell(withIdentifier: typingCellID) as? TypingCell
@@ -222,10 +219,6 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
                 }
             }
         }
-        //let bottomMessageIndex = IndexPath(row: tableView.numberOfRows(inSection: 0) - 1, section: 0)
-        //tableView.scrollToRow(at: bottomMessageIndex, at: .bottom, animated: true)
-        //tableView.scrollRectToVisible(tableView.convert(tableView.tableFooterView?.bounds ?? CGRect.zero, from: tableView.tableFooterView), animated: true)
-        //scrollToBottom()
     }
     
     func presentFunctions() {
@@ -238,7 +231,6 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
     }
 
     func scrollToBottom() {
-        //tableView.reloadData()
         DispatchQueue.main.async(execute: { [self] in
             if self.tableView.tableFooterView != nil && (self.tableView.tableFooterView?.frame.size.height ?? 0.0) > 0 {
                 self.tableView.scrollRectToVisible(self.tableView.tableFooterView?.frame ?? CGRect.zero, animated: true)
@@ -361,7 +353,7 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
     }
     
     @objc func noButton(_ sender: UIButton) {
-        //
+        //TODO:
     }
     
     func presentYesNo() {
@@ -369,8 +361,73 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         addNoButton()
     }
     
-    override func viewDidLayoutSubviews() {
-        <#code#>
+    let teal = UIColor(displayP3Red: 6/255, green: 189/255, blue: 196/255, alpha: 1)
+    let navy = UIColor(displayP3Red: 41/255, green: 64/255, blue: 94/255, alpha: 1)
+
+    
+    var stringComponents = [String]()
+    
+    @objc func A1(_ sender: UIButton) {
+        switchActionButtonState(0)
+    }
+    
+    @objc func A2(_ sender: UIButton) {
+        switchActionButtonState(1)
+    }
+    
+    @objc func A3(_ sender: UIButton) {
+        switchActionButtonState(2)
+    }
+    
+    @objc func A4(_ sender: UIButton) {
+        switchActionButtonState(3)
+    }
+    
+    @objc func A5(_ sender: UIButton) {
+        switchActionButtonState(4)
+    }
+    
+    @objc func A6(_ sender: UIButton) {
+        switchActionButtonState(5)
+    }
+    
+    @objc func A7(_ sender: UIButton) {
+        switchActionButtonState(6)
+    }
+    
+    @objc func A8(_ sender: UIButton) {
+        switchActionButtonState(7)
+    }
+    
+    @objc func A9(_ sender: UIButton) {
+        switchActionButtonState(8)
+    }
+    
+    @objc func A10(_ sender: UIButton) {
+        switchActionButtonState(9)
+    }
+    
+    @objc func A11(_ sender: UIButton) {
+        switchActionButtonState(10)
+    }
+    
+    @objc func A12(_ sender: UIButton) {
+        switchActionButtonState(11)
+    }
+    
+    func switchActionButtonState(_ b: Int) {
+        if Action_Sheet.buttonState[b] == false {
+            Action_Sheet.buttonState[b] = true
+            Action_Sheet.sheetOneViews[b].backgroundColor = navy
+            stringComponents.append(sheetOne[b])
+        } else {
+            if let i = stringComponents.firstIndex(of: sheetOne[b]) {
+                stringComponents.remove(at: i)
+            }
+            Action_Sheet.buttonState[b] = false
+            Action_Sheet.sheetOneViews[b].backgroundColor = teal
+        }
+        print("stringComp,", stringComponents)
     }
 }
 
