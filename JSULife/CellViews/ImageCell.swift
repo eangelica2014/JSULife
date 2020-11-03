@@ -2,8 +2,8 @@
 //  ChatBubbleCell.swift
 //  JSULife
 //
-//  Created by Asaad on 10/23/20.
-//  Copyright © 2020 Animata Inc. All rights reserved.
+//  Created by JSU on 10/23/20.
+//  Copyright © 2020 JSU.Life. All rights reserved.
 //
 
 import Foundation

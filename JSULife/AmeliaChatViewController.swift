@@ -2,7 +2,7 @@
 //  AmeliaChatViewController.swift
 //  JSULife
 //
-//  Created by JSU on 09/23/20.
+//  Created by JSU on 10/23/20.
 //  Copyright © 2020 JSU.Life. All rights reserved.
 //
 
@@ -32,6 +32,37 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
     var typingAnimator: TypingAnimator!
     var Action_Sheet: ActionSheet!
     
+    var SheetFunctions: Functions!
+    
+    var cellHeights = [IndexPath: CGFloat]()
+    var ameliaSet = [0, 4, 8, 10, 12, 15, 18]
+    var animated = [Int]()
+    var typingCell: TypingCell!
+    
+    var animationLoop = 0
+    var didBeginSequence = false
+    var didPresentFunctions = false
+    
+    var shouldResizeFooter = false
+    
+    let YesNo = YesNoSheet()
+    let N = NextFinal()
+    
+    var nextButton: UIButton!
+    
+    var functionsDoneButton: UIButton!
+    var functionsLabel: UILabel!
+    
+    var sliderContainer: UIView!
+    var painPrompt: UILabel!
+    var sliderLabel: UILabel!
+    var sliderVal = 0
+    let edgeSpace = 14 as CGFloat
+    var painSlider: UISlider!
+    var sliderAcceptButton: UIButton!
+    
+    var func_stringComponents = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.frame = UIScreen.main.bounds
@@ -51,50 +82,8 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         dialogue = [String]()
         
-        Action_Sheet = ActionSheet()
-        Action_Sheet.initViews()
-        view.addSubview(Action_Sheet.sheetOneContainer)
-    }
-    
-    func addYesButton() {
-        let bottomPadding = self.view.safeAreaInsets.bottom
-        let edgeSpace = (24 / 414) * UIScreen.main.bounds.width
-        let interSpace = (13 / 414) * UIScreen.main.bounds.width
-        let buttonWidth = (UIScreen.main.bounds.width - interSpace - (2 * edgeSpace)) / 2
-        let buttonHeight = (52 / 176) * buttonWidth
-        yesButton = UIButton(type: .system)
-        yesButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
-        yesButton.setTitle("Yes", for: .normal)
-        yesButton.setTitleColor(UIColor.white, for: .normal)
-        yesButton.titleLabel?.font = UIFont(name: "FuturaPT-Book", size: 18.0)!
-        yesButton.layer.cornerRadius = 6
-        yesButton.backgroundColor = UIColor(displayP3Red: 6/255, green: 189/255, blue: 196/255, alpha: 1)
-        yesButton.layer.position = CGPoint(x: edgeSpace + 0.5 * buttonWidth, y: UIScreen.main.bounds.height - bottomPadding - (2 * buttonHeight))
-        self.view.addSubview(yesButton)
-        yesButton.addTarget(self, action: #selector(yesButton(_:)), for: .touchUpInside)
-    }
-    
-    func addNoButton() {
-        let bottomPadding = self.view.safeAreaInsets.bottom
-        let edgeSpace = (24 / 414) * UIScreen.main.bounds.width
-        let interSpace = (13 / 414) * UIScreen.main.bounds.width
-        let buttonWidth = (UIScreen.main.bounds.width - interSpace - (2 * edgeSpace)) / 2
-        let buttonHeight = (52 / 176) * buttonWidth
-        noButton = UIButton(type: .system)
-        noButton.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
-        noButton.setTitle("No", for: .normal)
-        noButton.setTitleColor(UIColor.white, for: .normal)
-        noButton.layer.cornerRadius = 6
-        noButton.titleLabel?.font = UIFont(name: "FuturaPT-Book", size: 18.0)!
-        noButton.backgroundColor = UIColor(displayP3Red: 6/255, green: 189/255, blue: 196/255, alpha: 1)
-        noButton.layer.position = CGPoint(x: UIScreen.main.bounds.width - edgeSpace - 0.5 * buttonWidth, y: UIScreen.main.bounds.height - bottomPadding - (2 * buttonHeight))
-        self.view.addSubview(noButton)
-        noButton.addTarget(self, action: #selector(noButton(_:)), for: .touchUpInside)
-    }
-
-    func queueAmelia() {
-        dialogue.append(" ")
-        tableView.reloadData()
+        SheetFunctions = Functions()
+        SheetFunctions.parentVC = self
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -108,9 +97,6 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         return dialogue.count
     }
     
-    var ameliaSet = [0, 4, 8, 10, 12, 15, 18]
-    var animated = [Int]()
-    var typingCell: TypingCell!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Case 1: Amelia Typing
         if dialogue[indexPath.row] == " " {
@@ -131,6 +117,9 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         if dialogue[indexPath.row] == "[insert image]" {
             let cell: ImageCell! = tableView.dequeueReusableCell(withIdentifier: imageCellID) as? ImageCell
             cell.imageContainer.image = UIImage(named: "YouAreBeautiful")!
+            if indexPath.row == 19 {
+                cell.imageContainer.image = UIImage(named: "YouGotThis")!
+            }
             if ameliaSet.contains(indexPath.row) {
                 cell.ameliaView.isHidden = false
             } else {
@@ -140,7 +129,7 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         }
         
         //Case 3: User Response
-        if dialogue[indexPath.row] == "" || dialogue[indexPath.row] == "Yes" || dialogue[indexPath.row] == "[3] Discomforting" || dialogue[indexPath.row] == "Can’t move apart of my face and have trouble speaking correctly since my stroke." {
+        if dialogue[indexPath.row] == "" || dialogue[indexPath.row] == "Yes" || indexPath.row == 7 || indexPath.row == 11 || indexPath.row == 17 ||  dialogue[indexPath.row] == "Can’t move a part of my face and have trouble speaking correctly since my stroke." {
             let cell: ResponseCell! = tableView.dequeueReusableCell(withIdentifier: responseCellID) as? ResponseCell
             cell.messageLabel.text = dialogue[indexPath.row]
             if ameliaSet.contains(indexPath.row) {
@@ -163,8 +152,12 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         return cell
     }
     
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellHeights[indexPath] = cell.frame.size.height
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeights[indexPath] ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -174,11 +167,32 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return UIScreen.main.bounds.height * 0.40
+        if dialogue.count == 11 && shouldResizeFooter == true {
+            return UIScreen.main.bounds.height * 0.85
+        }
+        return UIScreen.main.bounds.height * 0.45
     }
     
-    var animationLoop = 0
-    var didBeginSequence = false
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func scrollToBottom() {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+            if self.tableView.tableFooterView != nil && (self.tableView.tableFooterView?.frame.size.height ?? 0.0) > 0 {
+                self.tableView.scrollRectToVisible(self.tableView.tableFooterView?.frame ?? CGRect.zero, animated: true)
+            } else {
+                if self.tableView.numberOfSections > 0 {
+                    let numRows = self.tableView.numberOfRows(inSection: 0)
+                    if numRows > 0 {
+                        let ipath = IndexPath(row: numRows - 1, section: 0)
+                        self.tableView.scrollToRow(at: ipath, at: .bottom, animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if anim == typingCell.c3.animation(forKey: "beginSequence") {
             typingCell.S1()
@@ -196,8 +210,9 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
                 animationLoop = 0
                 print("dialoguecount,", dialogue.count)
                 dialogue[dialogue.count - 1] = AmeliaDialogue[dialogue.count - 1]
-                self.tableView.reloadData()
                 scrollToBottom()
+
+                self.tableView.reloadData()
                 if dialogue.count == 3 {
                     self.presentYesNo()
                 }
@@ -208,51 +223,80 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
                     self.presentKeyboard()
                 }
                 if dialogue.count == 11 {
-                    self.presentFunctions()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2.0) {
+                        self.shouldResizeFooter = true
+                        self.tableView.reloadData()
+                        self.scrollToBottom()
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.50, execute: {
+                            if self.didPresentFunctions == false {
+                                self.didPresentFunctions = true
+                                self.presentFunctions()
+                            }
+                        })
+                    }
                 }
-                guard AmeliaDialogue[dialogue.count] != "" else {
+                if dialogue.count == 14 {
+                    self.presentYesNo()
+                }
+                if dialogue.count == 17 {
+                    self.presentGoalKeyboard()
                     return
                 }
-                let when = DispatchTime.now()
-                DispatchQueue.main.asyncAfter(deadline: when + 0.15) {
-                    self.queueAmelia()
+                if dialogue.count == 22 {
+                    self.presentNextButton()
+                    return
                 }
+                if dialogue.count < AmeliaDialogue.count {
+                    if AmeliaDialogue[dialogue.count] == "" {
+                        return
+                    }
+                }
+                self.queueAmelia()
             }
         }
     }
     
-    func presentFunctions() {
-        
+    func queueAmelia() {
+        dialogue.append(" ")
+        tableView.reloadData()
+    }
+    
+    func presentNextButton() {
+        print("presentNextButton")
+        N.parentVC = self
+        N.addNextButton()
+        if nextButton != nil {
+            self.view.addSubview(nextButton)
+            nextButton.addTarget(self, action: #selector(nextButton(_:)), for: .touchUpInside)
+        }
+    }
+    
+    func presentYesNo() {
+        YesNo.parentVC = self
+        YesNo.addYesButton()
+        YesNo.addNoButton()
+        self.view.addSubview(yesButton)
+        self.view.addSubview(noButton)
+        yesButton.addTarget(self, action: #selector(yesButton(_:)), for: .touchUpInside)
+        noButton.addTarget(self, action: #selector(noButton(_:)), for: .touchUpInside)
     }
     
     func presentKeyboard() {
-        dialogue.append("Can’t move apart of my face and have trouble speaking correctly since my stroke.")
+        dialogue.append("Can’t move a part of my face and have trouble speaking correctly since my stroke.")
         queueAmelia()
     }
-
-    func scrollToBottom() {
-        DispatchQueue.main.async(execute: { [self] in
-            if self.tableView.tableFooterView != nil && (self.tableView.tableFooterView?.frame.size.height ?? 0.0) > 0 {
-                self.tableView.scrollRectToVisible(self.tableView.tableFooterView?.frame ?? CGRect.zero, animated: true)
-            } else {
-                if self.tableView.numberOfSections > 0 {
-                    let numRows = self.tableView.numberOfRows(inSection: 0)
-                    if numRows > 0 {
-                        let ipath = IndexPath(row: numRows - 1, section: 0)
-                        self.tableView.scrollToRow(at: ipath, at: .bottom, animated: true)
-                    }
-                }
-            }
-        })
+    
+    func presentGoalKeyboard() {
+        dialogue.append("To be able to do my own things on my own")
+        queueAmelia()
     }
     
-    var sliderContainer: UIView!
-    var painPrompt: UILabel!
-    var sliderLabel: UILabel!
-    var sliderVal = 0
-    let edgeSpace = 14 as CGFloat
-    var painSlider: UISlider!
-    var sliderAcceptButton: UIButton!
+    func presentFunctions() {
+        SheetFunctions.pagesContainer.frame = CGRect(x: 0, y: 0.25 * UIScreen.main.bounds.height, width: SheetFunctions.pagesContainer.frame.width, height: SheetFunctions.pagesContainer.frame.height)
+        view.addSubview(SheetFunctions.pagesContainer)
+        addFunctionsDoneButton()
+        addFunctionsTitleLabel()
+    }
     
     func presentSlider() {
         sliderContainer = UIView(frame: CGRect(x: 0, y: (486/736) * UIScreen.main.bounds.height, width: UIScreen.main.bounds.width, height: 145/414 * UIScreen.main.bounds.width))
@@ -276,15 +320,51 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         addSliderAcceptButton()
     }
     
+    func addFunctionsDoneButton() {
+        let buttonWidth = (222 / 375) * UIScreen.main.bounds.width
+        let buttonHeight = (43 / 222) * buttonWidth
+        let b = UIButton(type: .system)
+        b.frame = CGRect(x: 0, y: 0, width: buttonWidth, height: buttonHeight)
+        b.setTitle("Done", for: .normal)
+        b.setTitleColor(UIColor.white, for: .normal)
+        b.titleLabel?.font = UIFont(name: "FuturaPT-Book", size: 18.0)!
+        b.layer.cornerRadius = buttonHeight / 2
+        b.backgroundColor = UIColor(displayP3Red: 247/255, green: 54/255, blue: 32/255, alpha: 1)
+        b.layer.position = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: SheetFunctions.pagesContainer.frame.maxY + 27 + buttonHeight * 0.5)
+        if functionsDoneButton == nil {
+            functionsDoneButton = b
+            self.view.addSubview(functionsDoneButton)
+            functionsDoneButton.addTarget(self, action: #selector(doneFunctions(_:)), for: .touchUpInside)
+        }
+    }
+    
+    func addFunctionsTitleLabel() {
+        let font = UIFont(name: "FuturaPT-Book", size: 18)
+        let str = "Select as many that apply:"
+        let w = str.size(withAttributes: [.font: font!]).width
+        let h = font!.lineHeight
+        let frame = CGRect(x: 0, y: 0, width: w, height: h)
+        let label = UILabel()
+        label.text = str
+        label.textColor = navy
+        label.frame = frame
+        label.font = font
+        label.layer.position = CGPoint(x: UIScreen.main.bounds.width * 0.5, y: SheetFunctions.pagesContainer.frame.minY - 19 - 0.5 * h)
+        if functionsLabel == nil {
+            functionsLabel = label
+            self.view.addSubview(functionsLabel)
+        }
+    }
+    
     func addSliderLabel() {
         sliderLabel = UILabel()
         let font = UIFont(name: "FuturaPT-Book", size: 18)
-        let str = "[10]" + " " + "No pain"
+        let str = "[10]" + " " + "Very Intolerable"
         let w = str.size(withAttributes: [.font: font!]).width
         let h = font!.lineHeight
         let frame = CGRect(x: 0, y: 0, width: w, height: h)
         sliderLabel.text = "[\(sliderVal)]" + " " + "No pain"
-        sliderLabel.textColor = UIColor(displayP3Red: 247/255, green: 54/255, blue: 32/255, alpha: 1)
+        sliderLabel.textColor = dieter_Orange
         sliderLabel.frame = frame
         sliderLabel.font = font
         sliderLabel.layer.position = CGPoint(x: 1.5 * edgeSpace + 0.5 * w, y: 43/145 * sliderContainer.frame.size.height)
@@ -333,13 +413,32 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         sliderAcceptButton.addTarget(self, action: #selector(sliderAcceptButton(_:)), for: .touchUpInside)
     }
     
+    @objc func nextButton(_ sender: UIButton) {
+        //TODO: Configure Next to Go to HomeScreen
+    }
+    
+    @objc func doneFunctions(_ sender: UIButton) {
+        var str = ""
+        for i in 0..<func_stringComponents.count {
+            str.append(func_stringComponents[i])
+            if i != func_stringComponents.count - 1 {
+                str.append(", ")
+            }
+        }
+        functionsLabel.removeFromSuperview()
+        functionsDoneButton.removeFromSuperview()
+        SheetFunctions.pagesContainer.removeFromSuperview()
+        dialogue.append(str)
+        queueAmelia()
+    }
+    
     @objc func sliderDidChange(_ sender: UISlider) {
         sliderVal = Int(painSlider.value)
-        sliderLabel.text = "[\(sliderVal)]" + " " + "No pain"
+        sliderLabel.text = "[\(sliderVal)]" + " " + painToVal(sliderVal)
     }
     
     @objc func sliderAcceptButton(_ sender: UIButton) {
-        dialogue.append("[3] Discomforting")
+        dialogue.append("[\(sliderVal)]" + " " + painToVal(sliderVal))
         sliderContainer.removeFromSuperview()
         sliderAcceptButton.removeFromSuperview()
         queueAmelia()
@@ -356,85 +455,142 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         //TODO:
     }
     
-    func presentYesNo() {
-        addYesButton()
-        addNoButton()
-    }
-    
-    let teal = UIColor(displayP3Red: 6/255, green: 189/255, blue: 196/255, alpha: 1)
-    let navy = UIColor(displayP3Red: 41/255, green: 64/255, blue: 94/255, alpha: 1)
-
-    
-    var stringComponents = [String]()
-    
     @objc func A1(_ sender: UIButton) {
-        switchActionButtonState(0)
+        switchActionButtonState(0, 0)
     }
     
     @objc func A2(_ sender: UIButton) {
-        switchActionButtonState(1)
+        switchActionButtonState(0, 1)
     }
     
     @objc func A3(_ sender: UIButton) {
-        switchActionButtonState(2)
+        switchActionButtonState(0, 2)
     }
     
     @objc func A4(_ sender: UIButton) {
-        switchActionButtonState(3)
+        switchActionButtonState(0, 3)
     }
     
     @objc func A5(_ sender: UIButton) {
-        switchActionButtonState(4)
+        switchActionButtonState(0, 4)
     }
     
     @objc func A6(_ sender: UIButton) {
-        switchActionButtonState(5)
+        switchActionButtonState(0, 5)
     }
     
     @objc func A7(_ sender: UIButton) {
-        switchActionButtonState(6)
+        switchActionButtonState(0, 6)
     }
     
     @objc func A8(_ sender: UIButton) {
-        switchActionButtonState(7)
+        switchActionButtonState(0, 7)
     }
     
     @objc func A9(_ sender: UIButton) {
-        switchActionButtonState(8)
+        switchActionButtonState(0, 8)
     }
     
     @objc func A10(_ sender: UIButton) {
-        switchActionButtonState(9)
+        switchActionButtonState(0, 9)
     }
     
     @objc func A11(_ sender: UIButton) {
-        switchActionButtonState(10)
+        switchActionButtonState(0, 10)
     }
     
     @objc func A12(_ sender: UIButton) {
-        switchActionButtonState(11)
+        switchActionButtonState(0, 11)
     }
     
-    func switchActionButtonState(_ b: Int) {
-        if Action_Sheet.buttonState[b] == false {
-            Action_Sheet.buttonState[b] = true
-            Action_Sheet.sheetOneViews[b].backgroundColor = navy
-            stringComponents.append(sheetOne[b])
+    @objc func B1(_ sender: UIButton) {
+        switchActionButtonState(1, 0)
+    }
+    
+    @objc func B2(_ sender: UIButton) {
+        switchActionButtonState(1, 1)
+    }
+    
+    @objc func B3(_ sender: UIButton) {
+        switchActionButtonState(1, 2)
+    }
+    
+    @objc func B4(_ sender: UIButton) {
+        switchActionButtonState(1, 3)
+    }
+    
+    @objc func B5(_ sender: UIButton) {
+        switchActionButtonState(1, 4)
+    }
+    
+    @objc func B6(_ sender: UIButton) {
+        switchActionButtonState(1, 5)
+    }
+    
+    @objc func B7(_ sender: UIButton) {
+        switchActionButtonState(1, 6)
+    }
+    
+    @objc func B8(_ sender: UIButton) {
+        switchActionButtonState(1, 7)
+    }
+    
+    @objc func B9(_ sender: UIButton) {
+        switchActionButtonState(1, 8)
+    }
+    
+    @objc func B10(_ sender: UIButton) {
+        switchActionButtonState(1, 9)
+    }
+    
+    func switchActionButtonState(_ p: Int, _ b: Int) {
+        var forSheet = [String]()
+        if p == 0 {
+            forSheet = SheetFunctions.sheetOne
         } else {
-            if let i = stringComponents.firstIndex(of: sheetOne[b]) {
-                stringComponents.remove(at: i)
-            }
-            Action_Sheet.buttonState[b] = false
-            Action_Sheet.sheetOneViews[b].backgroundColor = teal
+            forSheet = SheetFunctions.sheetTwo
         }
-        print("stringComp,", stringComponents)
+        if SheetFunctions.pages[p].buttonState[b] == false {
+            SheetFunctions.pages[p].buttonState[b] = true
+            SheetFunctions.pages[p].sheetViews[b].backgroundColor = navy
+            func_stringComponents.append(forSheet[b])
+        } else {
+            if let i = func_stringComponents.firstIndex(of: forSheet[b]) {
+                func_stringComponents.remove(at: i)
+            }
+            SheetFunctions.pages[p].buttonState[b] = false
+            SheetFunctions.pages[p].sheetViews[b].backgroundColor = teal
+        }
+    }
+    
+    func painToVal(_ val: Int) -> String {
+        switch val {
+        case 0:
+            return "No pain"
+        case 1:
+            return "Mild pain"
+        case 2:
+            return "Discomforting"
+        case 3:
+            return "Tolerable"
+        case 4:
+            return "Distressing"
+        case 5:
+            return "Very distressing"
+        case 6:
+            return "Intense"
+        case 7:
+            return "Very intense"
+        case 8:
+            return "Intolerable"
+        case 9:
+            return "Extreme"
+        case 10:
+            return "Excruciating"
+        default:
+            return "No pain"
+        }
     }
 }
 
-class CustomSlider: UISlider {
-    override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        var rect = super.trackRect(forBounds: bounds)
-        rect.size.height = 4
-        return rect
-    }
-}
+

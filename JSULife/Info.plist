@@ -21,6 +21,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>FuturaPT.otf</string>
+		<string>FuturaPTDemi.otf</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

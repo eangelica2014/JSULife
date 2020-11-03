@@ -2,8 +2,8 @@
 //  Typingswift
 //  JSULife
 //
-//  Created by Asaad on 10/25/20.
-//  Copyright © 2020 Animata Inc. All rights reserved.
+//  Created by JSU on 10/23/20.
+//  Copyright © 2020 JSU.Life. All rights reserved.
 //
 
 import Foundation
@@ -114,7 +114,7 @@ class TypingCell: UITableViewCell {
         c3!.position = CGPoint(x: cX + interSpace + diameter, y: typingIndicator.frame.size.height * 0.5)
     }
     
-    let dur = 0.25 as Double
+    let dur = 0.05 as Double
     
     func beginSequence() {
         let op1 = CABasicAnimation(keyPath: "opacity")

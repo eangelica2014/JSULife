@@ -2,8 +2,8 @@
 //  FooterView.swift
 //  JSULife
 //
-//  Created by Asaad on 10/25/20.
-//  Copyright © 2020 Animata Inc. All rights reserved.
+//  Created by JSU on 10/23/20.
+//  Copyright © 2020 JSU.Life. All rights reserved.
 //
 
 import Foundation
@@ -20,11 +20,11 @@ class FooterView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: "addrHeader")
-        resizeFrame()
+        //resizeFrame()
     }
     
     func resizeFrame() {
         backgroundColor = UIColor.yellow
-        self.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 500)
+        self.frame = CGRect(x: 0, y: 0, width: self.frame.size.width, height: 0)
     }
 }
