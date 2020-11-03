@@ -364,7 +364,7 @@ class AmeliaChatViewController: UIViewController, CAAnimationDelegate, UITableVi
         let h = font!.lineHeight
         let frame = CGRect(x: 0, y: 0, width: w, height: h)
         sliderLabel.text = "[\(sliderVal)]" + " " + "No pain"
-        sliderLabel.textColor = dieter_Orange
+        sliderLabel.textColor = dieterOrange
         sliderLabel.frame = frame
         sliderLabel.font = font
         sliderLabel.layer.position = CGPoint(x: 1.5 * edgeSpace + 0.5 * w, y: 43/145 * sliderContainer.frame.size.height)
